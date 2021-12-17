@@ -167,6 +167,7 @@ class JointTrajectoryActionServer(object):
             FollowJointTrajectoryAction,
             execute_cb=self._on_trajectory_action,
             auto_start=False)
+            
         self._arm = franka_interface.ArmInterface(synchronous_pub=True)
         self._enable = franka_interface.RobotEnable()
         self._interpolation = interpolation

@@ -20,5 +20,195 @@
     <gui fullscreen='0'>
     </gui>
 
+    <model name="work_table">
+    <static>true</static>
+    <link name="table">
+      <visual name="visual1">
+        <pose>0.41057557 0.00559949 0.24 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.36 0.36 0.020</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="link">
+      <visual name="front_left_leg">
+        <pose>0.58057557 0.17559949 0.115 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.23</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="front_right_leg">
+        <pose>0.58057557 -0.16440051 0.115 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.23</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="back_right_leg">
+        <pose>0.24057557 0.17559949 0.115 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.23</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="back_left_leg">
+        <pose>0.24057557 -0.16440051 0.115 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.23</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/White</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+    <model name='task_hole'>
+      <!--pose frame=''>3.06912012e-01 -1.03571057e-05 0.27 1.570796326795 -0 0</pose-->
+      
+      <link name='hole_link'>
+      <pose frame='task_hole_frame'>0.3 0.03 0.27 1.570796326795 0  0 </pose>
+        <inertial>
+          <pose frame=''>0 0 0.030  0 0 0</pose>
+          <mass>0.24291</mass>
+          <inertia>
+            <ixx>0.00010712</ixx>0.00010712
+            <ixy>4.8408E-22</ixy>
+            <ixz>-2.94760921879168E-38</ixz>
+            <iyy>0.00010915</iyy>
+            <iyz>2.20233875808934E-21</iyz>
+            <izz>6.6536E-05</izz>
+          </inertia>
+        </inertial>
+        <collision name='task_hole_collision'>
+          <geometry>
+            <mesh>
+              <uri>/home/wd/franka_ws/src/panda_simulator/panda_gazebo/meshes/hole.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>/home/wd/franka_ws/src/panda_simulator/panda_gazebo/meshes/hole.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Grey</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+<!--
+        <sensor name='task_hole_contact' type='contact'>
+          <update_rate> 100 </update_rate>
+          <always_on>true</always_on>
+          <visualize>false</visualize>
+          <contact>
+            <collision>task_hole_collision</collision>
+          </contact>
+          <plugin name="task_hole_bumper" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>task_hole_collision</bumperTopicName>
+            <frameName>task_hole_frame</frameName>
+          </plugin>
+        </sensor>
+-->
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+
+      <joint name="taskhole_to_world" type="fixed">
+        <parent>world</parent>
+        <child>hole_link</child>
+        <pose> 0 -0.05 0.03 0 0 0 </pose>
+
+      <!--
+        <axis>
+          <xyz>0 0 1</xyz>
+          <use_parent_model_frame>0</use_parent_model_frame>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>1000</effort>
+            <velocity>6</velocity>
+          </limit>
+        </axis>
+      -->
+        <sensor name="task_hole_force_torque" type="force_torque">
+          <always_on>true</always_on>
+          <visualize>false</visualize>
+          <update_rate>1000</update_rate>
+          <force_torque>
+            <frame>child</frame>
+            <measure_direction>child_to_parent</measure_direction>
+          </force_torque>
+          </sensor>     
+      </joint>
+
+      <plugin name="holeft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>1000.0</updateRate>
+        <topicName>/task_hole/ft</topicName>
+        <jointName>taskhole_to_world</jointName>
+      </plugin>  
+    </model>  
+
+
+
+
+
+  
+
+
+
+
   </world>
 </sdf>

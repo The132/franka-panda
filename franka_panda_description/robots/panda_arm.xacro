@@ -1,6 +1,8 @@
 <?xml version='1.0'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
-  <xacro:macro name="panda_arm" params="arm_id:='panda' description_pkg:='franka_panda_description' connected_to:='' in_gazebo='false' xyz:='0 0 0' rpy:='0 0 0'">
+
+
+  <xacro:macro name="panda_arm" params="arm_id:='panda' description_pkg:='franka_panda_description' connected_to:='' in_gazebo='false' xyz:='-0.0 0 0' rpy:='0 0 0'">
     <!-- If using custom frame with ${connected_to} param, make sure 'world' frame exists in its TF tree -->
     <xacro:if value="${connected_to == ''}">
       <link name="world" />
@@ -231,5 +233,127 @@
       <child link="${arm_id}_link8"/>
       <axis xyz="0 0 0"/>
     </joint>
+
+
+<!--
+    <joint name="_worktable_to_world" type="fixed">
+      <parent link="world"/>
+      <child link="_worktable"/>
+      <origin rpy="0 0 0" xyz="0.31057557 0.00559949 0.24"/>
+    </joint>
+    <link name="_worktable">
+      <visual>
+        <geometry>
+          <box size="0.36 0.36 0.020"/>
+        </geometry>
+        <material name="tablecolor">
+          <color rgba="0 0 0.8 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.36 0.36 0.020"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="_worktable_to_leg1" type="fixed">
+      <parent link="_worktable"/>
+      <child link="_worktable_leg1"/>
+      <origin rpy="0 0 0" xyz="0.17 0.17 -0.01"/>
+    </joint>
+    <link name="_worktable_leg1">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+        <material name="leg1color">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="_worktable_to_leg2" type="fixed">
+      <parent link="_worktable"/>
+      <child link="_worktable_leg2"/>
+      <origin rpy="0 0 0" xyz="-0.17  0.17  -0.01"/>
+    </joint>
+    <link name="_worktable_leg2">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+        <material name="leg2color">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="_worktable_to_leg3" type="fixed">
+      <parent link="_worktable"/>
+      <child link="_worktable_leg3"/>
+      <origin rpy="0 0 0" xyz="0.17  -0.17  -0.01"/>
+    </joint>
+    <link name="_worktable_leg3">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+        <material name="leg3color">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="_worktable_to_leg4" type="fixed">
+      <parent link="_worktable"/>
+      <child link="_worktable_leg4"/>
+      <origin rpy="0 0 0" xyz="-0.17  -0.17  -0.01"/>
+    </joint>
+    <link name="_worktable_leg4">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+        <material name="leg4color">
+          <color rgba="1 1 1 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.115"/>
+        <geometry>
+          <box size="0.02 0.02 0.23"/>
+        </geometry>
+      </collision>
+    </link>
+
+-->
+
+
+
+
+
   </xacro:macro>
 </robot>
