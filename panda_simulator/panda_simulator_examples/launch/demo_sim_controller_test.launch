@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <!-- Start the movement and robot state reading demo -->
+  <node pkg="panda_simulator_examples" type="move_robot.py" name="move_robot" output="screen"/>
+
+</launch>

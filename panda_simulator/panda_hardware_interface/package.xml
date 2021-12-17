@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <name>panda_hardware_interface</name>
+  <version>1.0.0</version>
+  <description>The panda_hardware_interface package</description>
+
+  <maintainer email="sxs1412@bham.ac.uk">
+    Saif Sidhik
+  </maintainer>
+  <license>Apache 2.0</license>
+  <url type="repository">
+    https://github.com/Justagist/panda_simulator
+  </url>
+
+  <author email="sxs1412@bham.ac.uk"> Saif Sidhik </author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>hardware_interface</build_depend>
+  <build_depend>roscpp</build_depend>
+  <run_depend>hardware_interface</run_depend>
+  <run_depend>roscpp</run_depend>
+
+</package>
