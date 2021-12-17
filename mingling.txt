@@ -1,0 +1,37 @@
+import rospy
+import numpy as np
+import time
+from panda_robot import PandaArm
+rospy.init_node("panda_demo") # initialise ros node
+r = PandaArm() 
+stiffness=np.zeros([6,],dtype=float)
+stiffness[0:6]=[300,300,300,30,30,30]
+cforce=np.zeros([6,],dtype=float)
+cforce[0:6]=[200,200,200,200,200,200]
+
+tforce=np.zeros([7,],dtype=float)
+tforce[0:7]=[80,80,80,80,10,10,10]
+
+
+r.set_CartesianImpedance(stiffness)
+r.set_collision_threshold(cforce,tforce)
+
+r.move_to_neutral() 
+pos,ori = r.ee_pose() 
+r.get_gripper().home_joints() 
+r.get_gripper().open() 
+
+r.move_to_joint_position([-8.48556818e-02, -8.88127666e-02, -6.59622769e-01, -1.57569726e+00, -4.82374882e-04,  2.15975946e+00,  4.36766917e-01]) 
+
+r.move_to_cartesian_pose(pos,ori) 
+
+/franka_ros_interface/custom_franka_state_controller/robot_state
+/franka_ros_interface/custom_franka_state_controller/tip_state
+r.enable_robot()
+
+
+
+
+rqt_plot /franka_ros_interface/custom_franka_state_controller/tip_state/K_F_ext_hat_K/wrench/force/x:y:z
+
+rqt_plot /franka_ros_interface/custom_franka_state_controller/tip_state/O_F_ext_hat_K/wrench/force/x:y:z

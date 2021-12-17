@@ -118,7 +118,7 @@
         <collision name='task_hole_collision'>
           <geometry>
             <mesh>
-              <uri>/home/wd/franka_ws/src/panda_simulator/panda_gazebo/meshes/hole.STL</uri>
+              <uri>model://hole.STL</uri>
             </mesh>
           </geometry>
           <surface>
@@ -137,7 +137,7 @@
         <visual name='visual'>
           <geometry>
             <mesh>
-              <uri>/home/wd/franka_ws/src/panda_simulator/panda_gazebo/meshes/hole.STL</uri>
+              <uri>model://hole.STL</uri>
             </mesh>
           </geometry>
           <material>

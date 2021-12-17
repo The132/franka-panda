@@ -1,0 +1,16 @@
+Proximal Policy Optimization
+
+
+2021 11 9
+安装numba库
+sudo apt update
+sudo apt install python-numba
+github秘钥
+sudo chomd -R 777 src  给src文件夹下的文件（递归）赋予可执行权限
+
+
+
+git add .
+git commit -m " "
+git push -u origin master
+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
