@@ -14,3 +14,4 @@ git add .
 git commit -m " "
 git push -u origin master
 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
+export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}/home/tianhai/franka_ws/src/panda_simulator/panda_gazebo/meshes
