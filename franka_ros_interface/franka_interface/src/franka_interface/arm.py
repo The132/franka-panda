@@ -873,7 +873,7 @@ class ArmInterface(object):
         rospy.loginfo("{}: Trajectory controlling complete".format(
             self.__class__.__name__))
 
-    def move_to_cartesian_pose_from_cur_state(self, pos, ori=None, use_moveit=True):
+    def move_to_cartesian_pose_from_cur_state(self, pos, ori=None, wait=True,use_moveit=True):
         """
         Move robot end-effector to specified cartesian pose using MoveIt! (also avoids obstacles if they are defined using :py:class:`franka_moveit.ExtendedPlanningSceneInterface`)
 
@@ -901,7 +901,7 @@ class ArmInterface(object):
         self._movegroup_interface._arm_group.set_start_state_to_current_state()
 
         self._movegroup_interface.go_to_cartesian_pose(
-            create_pose_msg(*self.get_flange_pose(pos, ori)))
+            create_pose_msg(*self.get_flange_pose(pos, ori)),ee_link="",wait=wait)
 
         ## =========================================
 

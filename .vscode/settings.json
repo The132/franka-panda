@@ -8,5 +8,6 @@
         "/home/tianhai/franka_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/melodic/lib/python2.7/dist-packages",
         "/home/tianhai/franka_ws/devel/lib/python2.7/dist-packages"
-    ]
+    ],
+    "ros.distro": "melodic"
 }
