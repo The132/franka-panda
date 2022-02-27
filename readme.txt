@@ -18,5 +18,5 @@ github秘钥
 git add .
 git commit -m " "
 git push -u origin master
-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
+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
 
