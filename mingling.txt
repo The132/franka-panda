@@ -33,5 +33,6 @@ r.enable_robot()
 
 
 rqt_plot /franka_ros_interface/custom_franka_state_controller/tip_state/K_F_ext_hat_K/wrench/force/x:y:z
+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
 
 rqt_plot /franka_ros_interface/custom_franka_state_controller/tip_state/O_F_ext_hat_K/wrench/force/x:y:z
